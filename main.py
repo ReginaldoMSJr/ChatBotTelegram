@@ -29,7 +29,7 @@ def MensagemAcaoIncorreta(msg):
     bot.send_message(msg.chat.id, "Não encontramos nenhuma ação com o código " + msg.text.upper().strip() + "\n\nDigite um código válido")
 
 def VerificarAcao(msg, resultadoEsperado):
-    match = re.match('^[A-Z]{4}$', msg.text.upper().strip())
+    match = re.match('^[A-Z]{2,4}$', msg.text.upper().strip())
     return (match != None) == resultadoEsperado
 
 
@@ -43,6 +43,6 @@ def Acao(msg):
 
 @bot.message_handler(func= lambda m: VerificarAcao(m, False))
 def MensagemAcaoPadraoErrado(msg):
-    bot.send_message(msg.chat.id, "O valor digitado está incorreto!\n\nDigite o código de uma ação da bolsa de valores norte americana composto por 4 letras\n\nExemplo: NFLX")
+    bot.send_message(msg.chat.id, "O valor digitado está incorreto!\n\nDigite o código de uma ação da bolsa de valores norte americana composto por 2 a 4 letras\n\nExemplo: NFLX")
 
 bot.infinity_polling(non_stop=True)
